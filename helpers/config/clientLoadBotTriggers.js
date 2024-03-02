@@ -13,12 +13,12 @@ const clientLoadBotTriggers = (client) => {
     const reply = require(filePath);
     // make sure the bot reply has at least a trigger and a text response.
     if ('trigger' in reply && 'responseContent' in reply) {
-      const triggers = Array.isArray(reply.trigger) ? reply.trigger : [reply.trigger]
+      const triggers = Array.isArray(reply.trigger) ? reply.trigger : [reply.trigger];
       for (const trigger of triggers) {
         client.messageResponses.set(trigger, reply);
       }
     }
-  }  
+  }
 };
 
 module.exports = clientLoadBotTriggers;

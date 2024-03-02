@@ -14,6 +14,7 @@ A discord bot built using the `discord.js` library in a `node.js` environment
   - the MongoDB library
 - `dotenv`
   - your tried and true secrets package
+- `eslint`
 
 ### How to add bot commands/replies/events
 

@@ -12,11 +12,12 @@ module.exports = {
       const message = await interaction.reply(
         {
           content: await getQuote(AncientQuote),
-          fetchReply: true
+          fetchReply: true,
         });
       message.react(EMOTES.xddTree);
-    } catch (e) {
+    }
+    catch (e) {
       console.error(e);
     }
-  }
+  },
 };

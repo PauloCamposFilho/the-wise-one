@@ -1,4 +1,4 @@
-// Controller that takes a generic _____Quote mongoose model and returns 
+// Controller that takes a generic _____Quote mongoose model and returns
 // a random entry from the collection
 
 exports.getQuote = async (model) => {

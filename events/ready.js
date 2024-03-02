@@ -8,5 +8,5 @@ module.exports = {
     console.log(`Logged in as ${client.user.tag}`);
     console.log(`Client ID: ${client.user.id}`);
     clientLoadUsers(client);
-  }
+  },
 };

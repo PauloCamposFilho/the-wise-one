@@ -19,15 +19,17 @@ module.exports = {
 
       try {
         await command.execute(interaction);
-      } catch (e) {
+      }
+      catch (e) {
         console.error(`Error executing ${interaction.commandName}`);
         console.error(e);
       }
     }
-    if (interaction.isButton()) { // ButtonInteraction Class
-      const commandName = interaction.message.interaction.commandName;      
+    // ButtonInteraction Class
+    if (interaction.isButton()) {
+      const commandName = interaction.message.interaction.commandName;
       const commandButton = interaction.client.commands.get(commandName);
       commandButton.responseHandler(interaction);
     }
-  }
+  },
 };

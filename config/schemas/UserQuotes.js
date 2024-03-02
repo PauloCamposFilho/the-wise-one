@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserQuoteSchema = new mongoose.Schema({
-  content: String
+  content: String,
 });
 
 const UserQuote = mongoose.model('UserQuote', UserQuoteSchema);

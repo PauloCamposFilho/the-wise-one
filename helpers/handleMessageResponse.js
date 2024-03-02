@@ -12,7 +12,8 @@ const handleMessageResponse = async (msg, response) => {
     _responseContent = await responseContent(responseArray);
   }
 
-  if (typeof responseContent === 'function' && !responseArray) { // shouldnt happen, mistake was made.
+  // shouldnt happen, mistake was made.
+  if (typeof responseContent === 'function' && !responseArray) {
     throw new Error('Malformed responseContent. No responseArray present');
   }
 

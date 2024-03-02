@@ -8,7 +8,7 @@ const clientLoadTests = async (client) => {
   const insultCount = await getQuoteCount(Insult);
   console.log(`Loaded ${insultCount} insult${insultCount > 1 ? 's' : ''}`);
   console.log(`Loaded ${quoteCount} Ancient One quote${quoteCount > 1 ? 's' : ''}`);
-  console.log(`Loaded ${triggerCount} trigger${triggerCount > 1 ? 's': ''}.`);  
+  console.log(`Loaded ${triggerCount} trigger${triggerCount > 1 ? 's' : ''}.`);
 };
 
 module.exports = clientLoadTests;

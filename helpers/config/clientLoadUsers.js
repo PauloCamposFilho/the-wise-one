@@ -5,7 +5,8 @@ const clientLoadUsers = async (client) => {
       await client.guilds.cache.get(guild[0]).members.fetch();
     }
     console.log(`Loaded a total of ${client.guilds.cache.size} guilds and ${client.users.cache.size} users`);
-  } catch (e) {
+  }
+  catch (e) {
     console.log(e);
   }
 };

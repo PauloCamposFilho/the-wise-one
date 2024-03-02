@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const InsultSchema = new mongoose.Schema({
-  content: String
+	content: String,
 });
 
 const Insult = mongoose.model('Insult', InsultSchema);

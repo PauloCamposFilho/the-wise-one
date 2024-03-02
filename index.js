@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const { client } = require('./config/client');
 const { dbStart } = require('./config/db/db');

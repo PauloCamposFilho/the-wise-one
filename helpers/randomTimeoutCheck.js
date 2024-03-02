@@ -2,8 +2,8 @@ const userIdCheck = process.env.FRENCHY_ID;
 
 /**
  * Takes a userId and a timeout chance and returns true/false on whether to time them out.
- * @param {String} userId 
- * @param {Number} timeoutChance 
+ * @param {String} userId
+ * @param {Number} timeoutChance
  * @returns Boolean
  */
 const randomTimeoutCheck = (userId, timeoutChance = 10) => {

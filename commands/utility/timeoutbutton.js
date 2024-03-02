@@ -17,7 +17,7 @@ module.exports = {
 
     await interaction.reply({
       content: EMOTES.xddTree,
-      components: [row]
+      components: [row],
     });
   },
   async responseHandler(interaction) {
@@ -28,9 +28,11 @@ module.exports = {
         await interaction.reply({ content: EMOTES.xddTree, ephemeral: true });
         await interaction.followUp({ content: `${nickname} will be back soon.` });
       }
-    } catch (e) { // cant timeout higher role members/admins/owners.
+    }
+    // cant timeout higher role members/admins/owners.
+    catch (e) {
       console.error(e);
       interaction.followUp({ content: 'You are already one with The Woods.', ephemeral: true });
     }
-  }
+  },
 };

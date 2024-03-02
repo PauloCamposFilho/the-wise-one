@@ -2,5 +2,7 @@ node_modules
 config.json
 .env
 bot-replies/*
+!bot-replies/example.js
 attachments/*
+!attachments/attachments.md
 constants/emotes.js

@@ -8,13 +8,13 @@ module.exports = {
       const command = interaction.client.commands.get(interaction.commandName);
       const commandHasRoleRequirement = 'memberCanExecute' in command;
 
-      if (commandHasRoleRequirement && !command.memberCanExecute(interaction.member)) {
-        return await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
-      }
-
       if (!command) {
         console.error(`No command matching ${interaction.commandName} was found.`);
         return;
+      }
+
+      if (commandHasRoleRequirement && !command.memberCanExecute(interaction.member)) {
+        return await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
       }
 
       try {

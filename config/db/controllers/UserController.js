@@ -27,18 +27,8 @@ exports.registerSteam = async (userId, steamId) => {
 
 exports.getUserInfo = async (userId) => {
   try {
-    const user = await User.findOne({ id: userId });
-    return user;
-  }
-  catch (e) {
-    throw new Error();
-  }
-};
-
-exports.getAllUserInfo = async () => {
-  try {
-    const users = await User.find({});
-    return users;
+    if (userId) return await User.findOne({ id: userId });
+    return await User.find({});
   }
   catch (e) {
     throw new Error();

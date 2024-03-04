@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const slashCommandRolePermissions = require('../../constants/slashCommandRolePermissions');
-const { getAllUserInfo } = require('../../config/db/controllers/UserController');
+const { getUserInfo } = require('../../config/db/controllers/UserController');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -9,7 +9,7 @@ module.exports = {
 	async execute(interaction) {
 		try {
 
-			const users = await getAllUserInfo();
+			const users = await getUserInfo();
 
 			// Initialize the embed
 			const embed = new EmbedBuilder()

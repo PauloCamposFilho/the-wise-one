@@ -3,6 +3,7 @@ config.json
 .env
 bot-replies/*
 !bot-replies/example.js
+!bot-replies/example-local.js
 attachments/*
 !attachments/attachments.md
 constants/emotes.js

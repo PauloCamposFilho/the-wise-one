@@ -1,3 +1,5 @@
+// example for bot trigger/response with content strictly being fetched from the database.
+
 const { getQuote } = require('../config/db/controllers/QuoteController');
 const UserQuote = require('../config/schemas/UserQuotes');
 

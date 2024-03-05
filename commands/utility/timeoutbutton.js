@@ -32,7 +32,7 @@ module.exports = {
     // cant timeout higher role members/admins/owners.
     catch (e) {
       console.error(e);
-      interaction.followUp({ content: 'You are already one with The Woods.', ephemeral: true });
+      interaction.reply({ content: 'You are already one with The Woods.', ephemeral: true });
     }
   },
 };

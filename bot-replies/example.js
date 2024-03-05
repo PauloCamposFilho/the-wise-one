@@ -1,10 +1,16 @@
+const { getQuote } = require('../config/db/controllers/QuoteController');
+const UserQuote = require('../config/schemas/UserQuotes');
+
 module.exports = {
 	name: 'Your example bot reply',
 	trigger: 'the-command-to-trigger-this-response',
-	responseContent: 'the-response-to-this-trigger',
-	followUpMessage: 'follow up message that goes after the reply',
-	// attachment is always an array, regardless of size.
-	attachment: ['./attachments/your-first-file', './attachments/your-second-file'],
+	// a mongoDB document to query against the database for your model
+	responseFilter: {"propertyName" : "propertyValue"},
+	// the controller action to fetch quotes from the database
+	responseContent: getQuote,
+	// the improperly named property that takes the model used for the database query.
+	// todo: fix property name.
+	responseArray: UserQuote,
 	// boolean that defines whether the bot itself can trigger this when using /speak command
 	botCanTrigger: true,
 };

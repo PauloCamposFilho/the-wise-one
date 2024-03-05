@@ -4,12 +4,12 @@ const { getQuote } = require('../config/db/controllers/QuoteController');
 
 const handleMessageResponse = async (msg, response) => {
 
-  const { responseContent, responseArray, followUpMessage, attachment } = response;
+  const { responseContent, responseArray, responseFilter } = response;
   let _responseContent = responseContent;
 
   // if responseContent passed a function, and a responseArray property, then it needs to interact with a responseArray component
   if (typeof responseContent === 'function' && responseArray) {
-    _responseContent = await responseContent(responseArray);
+    _responseContent = await responseContent(responseArray, responseFilter);
   }
 
   // shouldnt happen, mistake was made.
@@ -18,13 +18,13 @@ const handleMessageResponse = async (msg, response) => {
   }
 
   // trolling check
-  if (randomTimeoutCheck(msg.author.id, 33)) return msg.reply(`${await getQuote(Insult)}`);
-  if (randomTimeoutCheck(msg.author.id, 33)) return msg.member.timeout(60_000, `${await getQuote(Insult)}`);
+  if (randomTimeoutCheck(msg.author.id, 33)) return msg.reply(`${await getQuote(Insult).content}`);
+  if (randomTimeoutCheck(msg.author.id, 33)) return msg.member.timeout(60_000, `${await getQuote(Insult).content}`);
 
   // no trolling? respond
-  if (attachment) await msg.channel.send({ files: attachment, content: _responseContent });
-  if (!attachment) await msg.reply(_responseContent);
-  if (followUpMessage) await msg.channel.send({ content: followUpMessage });
+  if (_responseContent.attachment) await msg.channel.send({ files: _responseContent.attachment, content: _responseContent.content });
+  if (!_responseContent.attachment) await msg.reply(_responseContent.content);
+  if (_responseContent.followUpMessage) await msg.channel.send({ content: _responseContent.followUpMessage });
 
 };
 

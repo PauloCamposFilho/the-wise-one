@@ -3,10 +3,12 @@ const randomTimeoutCheck = require('./randomTimeoutCheck');
 const { getQuote } = require('../config/db/controllers/QuoteController');
 
 const handleMessageResponse = async (msg, response) => {
-
+  let _responseContent = {};
   try {
-    const { responseContent, responseModel, responseFilter } = response;
-    let _responseContent = responseContent;
+    const { responseContent, responseModel, responseFilter, followUpMessage, attachment } = response;
+    _responseContent.content = responseContent;
+    _responseContent.followUpMessage = followUpMessage;
+    _responseContent.attachment = attachment;
 
     // if responseContent passed a function, and a responseModel property, then it needs to interact with a responseModel component
     if (typeof responseContent === 'function' && responseModel) {
@@ -34,6 +36,7 @@ const handleMessageResponse = async (msg, response) => {
     console.log(msg);
     console.log("the response");
     console.log(response);
+    console.log(e);
   }
 
 

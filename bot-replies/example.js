@@ -10,9 +10,8 @@ module.exports = {
 	responseFilter: {"propertyName" : "propertyValue"},
 	// the controller action to fetch quotes from the database
 	responseContent: getQuote,
-	// the improperly named property that takes the model used for the database query.
-	// todo: fix property name.
-	responseArray: UserQuote,
+	// mongoose model that is used for the database query
+	responseModel: UserQuote,
 	// boolean that defines whether the bot itself can trigger this when using /speak command
 	botCanTrigger: true,
 };

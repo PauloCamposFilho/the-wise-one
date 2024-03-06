@@ -25,8 +25,7 @@ const handleMessageResponse = async (msg, response) => {
     if (randomTimeoutCheck(msg.author.id, 33)) return msg.member.timeout(60_000, `${await getQuote(Insult).content}`);
 
     // no trolling? respond
-    if (_responseContent.attachment) await msg.channel.send({ files: _responseContent.attachment, content: _responseContent.content });
-    if (!_responseContent.attachment) await msg.reply(_responseContent.content);
+    await msg.reply({ files: _responseContent.attachment, embeds: _responseContent.embeds, content: _responseContent.content });
     if (_responseContent.followUpMessage) await msg.channel.send({ content: _responseContent.followUpMessage });
 
   }

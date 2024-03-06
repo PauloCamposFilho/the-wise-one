@@ -9,13 +9,16 @@ const clientLoadBotTriggers = (client) => {
   const botRepliesFiles = fs.readdirSync(botRepliesPath).filter(file => file.endsWith('.js'));
 
   for (const file of botRepliesFiles) {
-    const filePath = path.join(botRepliesPath, file);
-    const reply = require(filePath);
-    // make sure the bot reply has at least a trigger and a text response.
-    if ('trigger' in reply && 'responseContent' in reply) {
-      const triggers = Array.isArray(reply.trigger) ? reply.trigger : [reply.trigger];
-      for (const trigger of triggers) {
-        client.messageResponses.set(trigger, reply);
+    // check that it isn't one of the example files... those shouldnt be loaded.
+    if (file.indexOf("example") == -1) {
+      const filePath = path.join(botRepliesPath, file);
+      const reply = require(filePath);
+      // make sure the bot reply has at least a trigger and a text response.
+      if ('trigger' in reply && 'responseContent' in reply) {
+        const triggers = Array.isArray(reply.trigger) ? reply.trigger : [reply.trigger];
+        for (const trigger of triggers) {
+          client.messageResponses.set(trigger, reply);
+        }
       }
     }
   }

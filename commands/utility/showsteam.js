@@ -18,7 +18,6 @@ module.exports = {
 				.setThumbnail('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png')
 				.setTimestamp();
 
-
 			// Initialize arrays with starter values for styling the embed.
 			const nicknames = ['Username\n'];
 			const steamIds = ['SteamId\n'];

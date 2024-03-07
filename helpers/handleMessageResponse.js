@@ -21,8 +21,8 @@ const handleMessageResponse = async (msg, response) => {
     }
 
     // trolling check
-    if (randomTimeoutCheck(msg.author.id, 33)) return msg.reply(`${await getQuote(Insult).content}`);
-    if (randomTimeoutCheck(msg.author.id, 33)) return msg.member.timeout(60_000, `${await getQuote(Insult).content}`);
+    if (randomTimeoutCheck(msg.author.id, 33)) return await msg.reply(`${(await getQuote(Insult)).content}`);
+    if (randomTimeoutCheck(msg.author.id, 33)) return await msg.member.timeout(60_000, `${(await getQuote(Insult)).content}`);
 
     // no trolling? respond
     await msg.reply({ files: _responseContent.attachment, embeds: _responseContent.embeds, content: _responseContent.content });

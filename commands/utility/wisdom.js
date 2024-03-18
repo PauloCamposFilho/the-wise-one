@@ -11,7 +11,7 @@ module.exports = {
     try {
       const message = await interaction.reply(
         {
-          content: await getQuote(AncientQuote),
+          content: (await getQuote(AncientQuote)).content,
           fetchReply: true,
         });
       message.react(EMOTES.xddTree);

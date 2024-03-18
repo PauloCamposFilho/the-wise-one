@@ -30,7 +30,6 @@ module.exports = {
 
       // Handle frenchy reacting with anything to the bot.
       if (messageReaction.message.author.id === theWiseTreeUserId && user.id === userIdCheck && randomTimeoutCheck(messageReaction.message.author.id, 33)) {
-        console.log('frenchie reacted');
         await channel.send({ content: `We wont be hearing from ${reactor.nickname} for a while...` });
         reactor.timeout(60_000);
         messageReaction.users.remove(user);

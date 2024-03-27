@@ -1,6 +1,7 @@
 const Insult = require('../config/schemas/Insult');
 const randomTimeoutCheck = require('./randomTimeoutCheck');
 const { getQuote } = require('../config/db/controllers/QuoteController');
+const failChance = process.env.BOT_FAIL_CHANCE;
 
 const handleMessageResponse = async (msg, response) => {
   let _responseContent = {};
@@ -21,8 +22,8 @@ const handleMessageResponse = async (msg, response) => {
     }
 
     // trolling check
-    if (randomTimeoutCheck(msg.author.id, 33)) return await msg.reply(`${(await getQuote(Insult)).content}`);
-    if (randomTimeoutCheck(msg.author.id, 33)) return await msg.member.timeout(60_000, `${(await getQuote(Insult)).content}`);
+    if (randomTimeoutCheck(msg.author.id, failChance)) return await msg.reply(`${(await getQuote(Insult)).content}`);
+    if (randomTimeoutCheck(msg.author.id, failChance)) return await msg.member.timeout(60_000, `${(await getQuote(Insult)).content}`);
 
     // no trolling? respond
     await msg.reply({ files: _responseContent.attachment, embeds: _responseContent.embeds, content: _responseContent.content });

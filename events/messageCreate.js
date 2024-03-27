@@ -10,7 +10,7 @@ module.exports = {
     try {
       const client = msg.client;
       const member = msg.member;
-      const isTrustedMember = !!member.roles.cache.get(slashCommandRolePermissions.trusted_role);
+      const isTrustedMember = !!member && !!member.roles?.cache.get(slashCommandRolePermissions.trusted_role) || false;
       const messageResponse = await (client.messageResponses.get(msg.content));
       const botCanTrigger = messageResponse?.botCanTrigger || false;
 

@@ -3,6 +3,7 @@ const clientLoadSlashCommands = require('../helpers/config/clientLoadSlashComman
 const clientLoadBotTriggers = require('../helpers/config/clientLoadBotTriggers');
 const clientLoadEvents = require('../helpers/config/clientLoadEvents');
 const clientLoadTests = require('../helpers/config/clientLoadTests');
+const clientLoadEmitters = require('../helpers/config/clientLoadEmitters');
 
 const client = new Client({
   intents: [
@@ -20,5 +21,6 @@ clientLoadSlashCommands(client);
 clientLoadBotTriggers(client);
 clientLoadEvents(client);
 clientLoadTests(client);
+clientLoadEmitters(client);
 
 module.exports = { client };

@@ -4,6 +4,9 @@ config.json
 bot-replies/*
 !bot-replies/example.js
 !bot-replies/example-local.js
+events/tests.js
+emitters/*
+!emitters/example*
 attachments/*
 !attachments/attachments.md
 constants/emotes.js

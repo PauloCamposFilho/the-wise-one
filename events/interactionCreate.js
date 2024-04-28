@@ -3,44 +3,43 @@ const { Events } = require('discord.js');
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
-    // TODO: REFACTOR this function. Too much repetition.
+    const command = {
+      name: undefined,
+      data: undefined,
+      hasRoleRequirement: false,
+      execution: undefined,
+      responseHandler: undefined,
+    };
     if (interaction.isChatInputCommand()) {
-
-      const command = interaction.client.commands.get(interaction.commandName);
-      const commandHasRoleRequirement = 'memberCanExecute' in command;
-
-      if (!command) {
-        console.error(`No command matching ${interaction.commandName} was found.`);
-        return;
-      }
-
-      if (commandHasRoleRequirement && !command.memberCanExecute(interaction.member)) {
-        return await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
-      }
-
-      try {
-        await command.execute(interaction);
-      }
-      catch (e) {
-        console.error(`Error executing ${interaction.commandName}`);
-        console.error(e);
-      }
+      command.name = interaction.commandName;
+      command.data = interaction.client.commands.get(command.name);
+      command.hasRoleRequirement = 'memberCanExecute' in command.data;
     }
-    // ButtonInteraction Class
     if (interaction.isButton()) {
-      const commandName = interaction.message.interaction.commandName;
-      const commandButton = interaction.client.commands.get(commandName);
-      commandButton.responseHandler(interaction);
+      command.name = interaction.commandName;
+      command.data = interaction.client.commands.get(command.name);
+      command.hasRoleRequirement = 'memberCanExecute' in command.data;
+      command.responseHandler = command.data.responseHandler;
     }
-    // UserContextCommand interaction
     if (interaction.isUserContextMenuCommand()) {
-      const commandName = interaction.commandName;
-      const command = interaction.client.userContextCommands.get(commandName);
-      const commandHasRoleRequirement = 'memberCanExecute' in command;
-      if (commandHasRoleRequirement && !command.memberCanExecute(interaction.member)) {
-        return await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
-      }
-      command.execute(interaction);
+      command.name = interaction.commandName;
+      command.data = interaction.client.userContextCommands.get(command.name);
+      command.hasRoleRequirement = 'memberCanExecute' in command;
+    }
+
+    // handle the interaction
+    if (!command.data) {
+      return console.error(`No command matching ${interaction.commandName} was found.`);
+    }
+    if (command.hasRoleRequirement && !command.data.memberCanExecute(interaction.member)) {
+      return await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
+    }
+    try {
+      if (command.responseHandler) return command.responseHandler(interaction);
+      command.data.execute(interaction);
+    } catch (e) {
+      console.error(`Error executing ${command.name}`);
+      console.error(e);
     }
   },
 };

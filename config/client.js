@@ -4,7 +4,6 @@ const clientLoadBotTriggers = require('../helpers/config/clientLoadBotTriggers')
 const clientLoadEvents = require('../helpers/config/clientLoadEvents');
 const clientLoadTests = require('../helpers/config/clientLoadTests');
 const clientLoadEmitters = require('../helpers/config/clientLoadEmitters');
-const clientLoadUserContextCommands = require('../helpers/config/clientLoadUserContextCommands');
 
 const client = new Client({
   intents: [
@@ -23,6 +22,5 @@ clientLoadBotTriggers(client);
 clientLoadEvents(client);
 clientLoadTests(client);
 clientLoadEmitters(client);
-clientLoadUserContextCommands(client);
 
 module.exports = { client };

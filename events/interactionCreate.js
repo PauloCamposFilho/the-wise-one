@@ -23,7 +23,7 @@ module.exports = {
     }
     if (interaction.isUserContextMenuCommand()) {
       command.name = interaction.commandName;
-      command.data = interaction.client.userContextCommands.get(command.name);
+      command.data = interaction.client.commands.get(command.name);
       command.hasRoleRequirement = 'memberCanExecute' in command;
     }
 

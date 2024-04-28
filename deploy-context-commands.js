@@ -34,7 +34,7 @@ const rest = new REST().setToken(BOT_TOKEN);
     console.log(`Started refreshing ${commands.length} context menu commands.`);
     // The put method is used to fully refresh all commands in the guild with the current set
     const data = await rest.put(
-      Routes.applicationCommand(CLIENT_ID),
+      Routes.applicationCommands(CLIENT_ID),
       { body: commands },
     );
     console.log(`Successfully reloaded ${data.length} context menu commands.`);

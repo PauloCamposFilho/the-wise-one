@@ -31,5 +31,10 @@ module.exports = {
       const commandButton = interaction.client.commands.get(commandName);
       commandButton.responseHandler(interaction);
     }
+    if (interaction.isUserContextMenuCommand()) {
+      const commandName = interaction.commandName;
+      const command = interaction.client.userContextCommands.get(commandName);
+      command.execute(interaction);
+    }
   },
 };

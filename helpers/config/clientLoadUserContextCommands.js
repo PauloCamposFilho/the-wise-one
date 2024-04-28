@@ -1,12 +1,13 @@
 const { Collection } = require('discord.js');
-const fs = require('node:path');
+const fs = require('node:fs');
 const path = require('node:path');
 
 const clientLoadUserContextCommands = (client) => {
   client.userContextCommands = new Collection();
   // Load userContextCommands into collection
   const commandsPath = path.join(__dirname, '../..', 'context-commands/users');
-  for (const file of commandsPath) {
+  const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+  for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
     if ((!'data') in command && (!'execute') in command) {

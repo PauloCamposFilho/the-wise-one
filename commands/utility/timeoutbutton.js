@@ -32,7 +32,12 @@ module.exports = {
     // cant timeout higher role members/admins/owners.
     catch (e) {
       console.error(e);
-      interaction.reply({ content: 'You are already one with The Woods.', ephemeral: true });
+      // in case we cannot interact (ie, user has blocked the bot/app)
+      try {
+        interaction.reply({ content: 'You are already one with The Woods.', ephemeral: true });
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
 };

@@ -34,6 +34,10 @@ module.exports = {
     if (interaction.isUserContextMenuCommand()) {
       const commandName = interaction.commandName;
       const command = interaction.client.userContextCommands.get(commandName);
+      const commandHasRoleRequirement = 'memberCanExecute' in command;
+      if (commandHasRoleRequirement && !command.memberCanExecute(interaction.member)) {
+        return await interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
+      }
       command.execute(interaction);
     }
   },

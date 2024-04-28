@@ -10,7 +10,7 @@ module.exports = {
       execution: undefined,
       responseHandler: undefined,
     };
-    if (interaction.isChatInputCommand()) {
+    if (interaction.isChatInputCommand() || interaction.isUserContextMenuCommand()) {
       command.name = interaction.commandName;
       command.data = interaction.client.commands.get(command.name);
       command.hasRoleRequirement = 'memberCanExecute' in command.data;
@@ -20,11 +20,6 @@ module.exports = {
       command.data = interaction.client.commands.get(command.name);
       command.hasRoleRequirement = 'memberCanExecute' in command.data;
       command.responseHandler = command.data.responseHandler;
-    }
-    if (interaction.isUserContextMenuCommand()) {
-      command.name = interaction.commandName;
-      command.data = interaction.client.commands.get(command.name);
-      command.hasRoleRequirement = 'memberCanExecute' in command;
     }
 
     // handle the interaction

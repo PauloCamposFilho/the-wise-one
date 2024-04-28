@@ -9,10 +9,10 @@ module.exports = {
   async execute(interaction) {
     try {
       const user = await getUserInfo(interaction.targetId);
+      // check if user has steamId registered, if not, we can stop there.
+      if (!user) return await interaction.reply({ content: `It doesn't look like the user has a SteamId registered here...`, ephemeral: true });
       const targetMember = interaction.member.guild.members.cache.get(interaction.targetId);
       const userAvatar = targetMember.displayAvatarURL();
-      // check if user has steamId registered, if not, we can stop there.
-      if (!user) return await interaction.reply({ content: `It doesn't look like ${targetMember.nickname} has a SteamId registered here...`, ephemeral: true });
 
       // Initialize the embed response
       const embed = new EmbedBuilder()

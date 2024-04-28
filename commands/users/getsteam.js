@@ -13,11 +13,12 @@ module.exports = {
       if (!user) return await interaction.reply({ content: `It doesn't look like the user has a SteamId registered here...`, ephemeral: true });
       const targetMember = interaction.member.guild.members.cache.get(interaction.targetId);
       const userAvatar = targetMember.displayAvatarURL();
+      const nickname = targetMember.nickname || targetMember.user.globalName;
 
       // Initialize the embed response
       const embed = new EmbedBuilder()
         .setColor(0x0099FF)
-        .setTitle(`${targetMember.nickname}'s Steam ID`)
+        .setTitle(`${nickname}'s Steam ID`)
         .setThumbnail(userAvatar)
         .setTimestamp();
 

@@ -16,7 +16,7 @@ module.exports = {
       command.hasRoleRequirement = 'memberCanExecute' in command.data;
     }
     if (interaction.isButton()) {
-      command.name = interaction.commandName;
+      command.name = interaction.message.interaction.commandName
       command.data = interaction.client.commands.get(command.name);
       command.hasRoleRequirement = 'memberCanExecute' in command.data;
       command.responseHandler = command.data.responseHandler;
